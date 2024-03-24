@@ -24,7 +24,19 @@ public class UserStorage {
 
     public void addUser(User user) {
         users.add(user);
+        saveToFile();
     }
+    private void saveToFile(){
+        try {
+            Context context = null;
+            FileOutputStream fos = context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(users);
+            oos.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
+    }
 }

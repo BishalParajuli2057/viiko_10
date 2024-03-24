@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +21,6 @@ public class AddUserActivity extends AppCompatActivity {
     private RadioGroup radioDegreeProgram;
     private RadioButton seRadioButton, imRadioButton, ceRadioButton, eeRadioButton;
 
-    @SuppressLint("WrongViewCast")
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -29,9 +28,13 @@ public class AddUserActivity extends AppCompatActivity {
         textLastName = findViewById(R.id.textLastName);
         textEmail = findViewById(R.id.textEmail);
         radioDegreeProgram = findViewById(R.id.textDegreeProgram);
+        seRadioButton = findViewById(R.id.seRadioButton);
+        imRadioButton = findViewById(R.id.imRadioButton);
+        ceRadioButton = findViewById(R.id.ceRadioButton);
+        eeRadioButton = findViewById(R.id.eeRadioButton);
     }
 
-    public void AddUserClicked(View view) {
+    public void addUserClicked(View view) {
         String firstName = textFirstName.getText().toString();
         String lastName = textLastName.getText().toString();
         String email = textEmail.getText().toString();
@@ -54,5 +57,6 @@ public class AddUserActivity extends AppCompatActivity {
         if (((CheckBox) findViewById(R.id.phdCheckBox)).isChecked()) degrees.add("Ph.D. degree");
         User newUser = new User(firstName, lastName, email, degreeProgram, degrees);
         UserStorage.getInstance().addUser(newUser);
+        Toast.makeText(this, "User added successfully", Toast.LENGTH_SHORT).show();
     }
 }
