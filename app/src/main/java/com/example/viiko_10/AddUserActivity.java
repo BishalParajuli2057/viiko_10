@@ -2,10 +2,14 @@ package com.example.viiko_10;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddUserActivity extends AppCompatActivity {
     private EditText textFirstName;
@@ -35,10 +39,13 @@ public class AddUserActivity extends AppCompatActivity {
         if (imRadioButton.isChecked()) degreeProgram = "Industrial Management";
         if (ceRadioButton.isChecked()) degreeProgram = "Computational Engineering";
         if (eeRadioButton.isChecked()) degreeProgram = "Electrical Engineering";
-
-        User newUser = new User(firstName, lastName, email, degreeProgram);
+        List<String> degrees = new ArrayList<>();
+        if (((CheckBox) findViewById(R.id.bcCheckBox)).isChecked()) degrees.add("B.Sc. degree");
+        if (((CheckBox) findViewById(R.id.msCheckBox)).isChecked()) degrees.add("M.Sc. degree");
+        if (((CheckBox) findViewById(R.id.IciCheckBox)).isChecked()) degrees.add("L.ic. degree");
+        if (((CheckBox) findViewById(R.id.phdCheckBox)).isChecked()) degrees.add("Ph.D. degree");
+        User newUser = new User(firstName, lastName, email, degreeProgram, degrees);
         UserStorage.getInstance(getApplicationContext()).addUser(newUser);
-
         finish();
     }
 }

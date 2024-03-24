@@ -1,14 +1,6 @@
 package com.example.viiko_10;
 
 import android.content.Context;
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import java.util.ArrayList;
 import java.io.*;
 import java.util.Collections;
@@ -18,7 +10,7 @@ public class UserStorage {
     private static UserStorage instance;
     private ArrayList<User> users;
     private static final String FILE_NAME = "users.data";
-    private Context context;
+    private final Context context;
 
     private UserStorage(Context context) {
         this.context = context;
@@ -47,13 +39,11 @@ public class UserStorage {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             users = (ArrayList<User>) ois.readObject();
         } catch (FileNotFoundException e) {
-            // File not found - this is ok, we'll start with an empty list
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    // This method saves the current list of users to a file
     private void saveUsers() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(users);
@@ -62,7 +52,7 @@ public class UserStorage {
         }
     }
     public ArrayList<User> getUsersSortedByLastName() {
-        ArrayList<User> sortedUsers = new ArrayList<>(users); // Create a copy for sorting
+        ArrayList<User> sortedUsers = new ArrayList<>(users);
         Collections.sort(sortedUsers, new Comparator<User>() {
             @Override
             public int compare(User u1, User u2) {

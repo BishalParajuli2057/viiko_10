@@ -1,22 +1,16 @@
 package com.example.viiko_10;
 
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import java.io.Serializable;
+import java.util.List;
 
 public class User  implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
     private String degreeProgram;
+    private List<String> degrees;
 
-    public User(String firstName, String lastName, String email, String degreeProgram) {
+    public User(String firstName, String lastName, String email, String degreeProgram, List<String> degrees) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -37,5 +31,8 @@ public class User  implements Serializable {
 
     public String getDegreeProgram() {
         return degreeProgram;
+    }
+    public List<String> getDegrees() {
+        return degrees;
     }
 }

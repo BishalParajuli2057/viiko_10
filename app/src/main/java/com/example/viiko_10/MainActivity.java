@@ -13,13 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void goToAddUser(View view) {
+    public void  sendData(){
         Intent intent = new Intent(this, AddUserActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToListUsers(View view) {
-        Intent intent = new Intent(this, ListUserActivity.class);
         startActivity(intent);
     }
 }
